@@ -1,18 +1,20 @@
 package com.project.hackathon.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDate;
 
-//@Data
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="Users")
-public class UserEntity {
+@Table(name="Creator")
+public class CreatorEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -30,18 +32,11 @@ public class UserEntity {
     private String lastName;
 
     @Column
-    private Boolean gender;
-
-    @Column
     private LocalDate bDay;
-
-    @Column
-    private String email;
 
     @Column
     private String phone;
 
-    @JoinColumn
-    @ManyToOne
-    private UniversityEntity universityID;
+    @Column
+    private String email;
 }
