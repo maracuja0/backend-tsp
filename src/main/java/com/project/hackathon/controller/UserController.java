@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping(path ="/api/user")
 public class UserController {
 
     @Autowired
@@ -29,5 +29,6 @@ public class UserController {
         userService.addUser(user);
     }
 
-
+//    @PostMapping("/login")
+//    public void loginUSer(@RequestBody @Valid )
 }
