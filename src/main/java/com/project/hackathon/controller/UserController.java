@@ -2,11 +2,9 @@ package com.project.hackathon.controller;
 
 import com.project.hackathon.entity.UserEntity;
 import com.project.hackathon.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,4 +23,11 @@ public class UserController {
     public UserEntity getUserById(@PathVariable Long userId){
         return userService.getUserById(userId);
     }
+
+    @PostMapping("/registration")
+    public void addUser(@RequestBody @Valid UserEntity user){
+        userService.addUser(user);
+    }
+
+
 }

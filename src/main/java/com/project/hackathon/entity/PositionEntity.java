@@ -2,14 +2,13 @@ package com.project.hackathon.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
-
+@Data
 @Getter
 @Setter
 @AllArgsConstructor
@@ -19,25 +18,31 @@ import java.time.LocalDate;
 public class PositionEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", unique = true)
     private Long id;
 
-    @Column
+    @NotBlank(message = "{name is invalid}")
+    @Column(name = "name")
     private String name;
 
-    @Column
+    @NotBlank(message = "{description is invalid}")
+    @Column(name = "description")
     private String description;
 
-    @Column
+    //TODO: Разобраться с этим полем, надо оно или нет
+    @Column(name = "type")
     private Boolean type;
 
-    @Column
+    @Column(name = "link")
     private String link;
 
-    @JoinColumn
+    @NotNull(message = "{creator_id in invalid}")
+    @JoinColumn(name = "creator_id")
     @ManyToOne
     private CreatorEntity creatorId;
 
-    @Column()
+    @Column(name = "date")
+    @NotNull(message = "{date is invalid}")
     @JsonFormat(pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate date;

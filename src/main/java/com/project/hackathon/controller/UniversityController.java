@@ -18,6 +18,5 @@ public class UniversityController {
     @GetMapping
     public List<UniversityEntity> getAllUniversities(){
         return universityService.getAllUniversities();
-
     }
 }

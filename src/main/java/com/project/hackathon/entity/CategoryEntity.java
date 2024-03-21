@@ -1,11 +1,10 @@
 package com.project.hackathon.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.validation.constraints.NotBlank;
+import lombok.*;
 
+@Data
 @Getter
 @Setter
 @AllArgsConstructor
@@ -15,8 +14,10 @@ import lombok.Setter;
 public class CategoryEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", unique = true)
     private Long id;
 
-    @Column
+    @NotBlank(message = "{name is invalid}")
+    @Column(name = "name")
     private String name;
 }

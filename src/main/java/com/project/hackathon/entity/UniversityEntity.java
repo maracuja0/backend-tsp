@@ -1,12 +1,10 @@
 package com.project.hackathon.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.validation.constraints.NotBlank;
+import lombok.*;
 
+@Data
 @Getter
 @Setter
 @AllArgsConstructor
@@ -17,12 +15,14 @@ public class UniversityEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", unique = true)
     private Long id;
 
-    @Column
-    @NotNull
+    @Column(name = "name")
+    @NotBlank(message = "{name is invalid}")
     private String name;
 
-    @Column
+    @NotBlank(message = "{city is invalid}")
+    @Column(name = "city")
     private String city;
 }

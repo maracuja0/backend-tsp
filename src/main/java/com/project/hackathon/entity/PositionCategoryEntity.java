@@ -1,11 +1,10 @@
 package com.project.hackathon.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.validation.constraints.NotNull;
+import lombok.*;
 
+@Data
 @Getter
 @Setter
 @AllArgsConstructor
@@ -13,19 +12,16 @@ import lombok.Setter;
 @Entity
 @Table(name="Position_Category")
 public class PositionCategoryEntity {
-//    @EmbeddedId
-//    private PositionCategoryId id;
-
-//    @JoinColumn(name = "category_id", referencedColumnName = "id", insertable = false, updatable = false)
     @Id
-    @JoinColumn
+    @NotNull(message = "{category_id in invalid}")
+    @JoinColumn(name = "category_id")
     @ManyToOne
-    private CategoryEntity category;
+    private CategoryEntity categoryId;
 
-//    @JoinColumn(name = "position_id", referencedColumnName = "id", insertable = false, updatable = false)
     @Id
-    @JoinColumn
+    @NotNull(message = "{position_id in invalid}")
+    @JoinColumn(name = "position_id")
     @ManyToOne
-    private PositionEntity position;
+    private PositionEntity positionId;
 
 }

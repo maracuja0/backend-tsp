@@ -8,4 +8,6 @@ public interface UserService {
     List<UserEntity> getAllUsers();
 
     UserEntity getUserById(Long userId);
+
+    void addUser(UserEntity user);
 }
