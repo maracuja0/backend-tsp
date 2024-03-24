@@ -21,6 +21,11 @@ public class LikedEntity {
     @Column(name = "id", unique = true)
     private Long id;
 
+    @NotNull(message = "{user_id is invalid")
+    @JoinColumn(name = "user_id")
+    @ManyToOne
+    private UserEntity userId;
+
     @NotNull(message = "{position_id is invalid}")
     @JoinColumn(name = "position_id")
     @ManyToOne
