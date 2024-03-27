@@ -11,6 +11,7 @@ import lombok.*;
 @NoArgsConstructor
 @Entity
 @Table(name="Position_Category")
+@IdClass(PositionCategoryEntityId.class)
 public class PositionCategoryEntity {
     @Id
     @NotNull(message = "{category_id in invalid}")
