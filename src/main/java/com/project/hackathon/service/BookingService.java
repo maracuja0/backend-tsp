@@ -11,4 +11,6 @@ public interface BookingService {
     List<BookingEntity> getAllBooking();
 
     ResponseEntity<String> deleteBooking(Long id);
+
+//    List<BookingEntity> getBookingByUserId(Long userId);
 }
