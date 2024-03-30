@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PositionServiceImpl implements PositionService {
@@ -28,5 +29,10 @@ public class PositionServiceImpl implements PositionService {
     public ResponseEntity<String> deletePosition(Long id) {
         positionRepository.deleteById(id);
         return ResponseEntity.ok("Delete was success");
+    }
+
+    @Override
+    public Optional<PositionEntity> getPositionById(Long id) {
+        return positionRepository.findById(id);
     }
 }

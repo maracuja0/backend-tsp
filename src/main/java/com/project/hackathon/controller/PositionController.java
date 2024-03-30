@@ -8,9 +8,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
-@RequestMapping(path = "/api/position")
+@RequestMapping(path = "/api/positions")
 public class PositionController {
 
     @Autowired
@@ -21,6 +22,17 @@ public class PositionController {
         return positionService.getPositions();
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<PositionEntity> getPositionById(@PathVariable Long id){
+        Optional<PositionEntity> positionOptional = positionService.getPositionById(id);
+        if (positionOptional.isPresent()) {
+            PositionEntity position = positionOptional.get();
+            return ResponseEntity.ok(position);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     @PostMapping
     public Long createPosition(@RequestBody @Valid PositionEntity position){
         return positionService.createPosition(position);
@@ -29,8 +41,4 @@ public class PositionController {
     public ResponseEntity<String> deletePosition(@PathVariable("id") Long id){
         return positionService.deletePosition(id);
     }
-//    @PutMapping("/{id}")
-//    public ResponseEntity<String> updatePosition(@PathVariable("id") UUID id, @RequestBody @Valid Position position){
-//        return positionService.updatePosition(id, position);
-//    }
 }

@@ -11,4 +11,6 @@ public interface CategoryService {
     Long createCategory(CategoryEntity category);
 
     ResponseEntity<String> deleteCategory(Long id);
+
+    List<CategoryEntity> getAllCategoriesByPositionId(Long positionId);
 }

@@ -10,22 +10,32 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path ="/api/category")
+@RequestMapping(path ="/api")
 public class CategoryController {
     @Autowired
     private CategoryService categoryService;
 
-    @GetMapping
-    public List<CategoryEntity> getAllCatgories(){
+    @GetMapping("/category")
+    public List<CategoryEntity> getAllCategories(){
         return categoryService.getAllCategories();
     }
 
-    @PostMapping
+    @GetMapping("/positions/{positionId}/categories")
+    public ResponseEntity<List<CategoryEntity>> getAllCategoriesByPositionId(@PathVariable Long positionId){
+        List<CategoryEntity> categories = categoryService.getAllCategoriesByPositionId(positionId);
+        if (!categories.isEmpty()) {
+            return ResponseEntity.ok(categories);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PostMapping("/category")
     public Long createCategory(@RequestBody @Valid CategoryEntity category){
         return categoryService.createCategory(category);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/category/{id}")
     public ResponseEntity<String> deleteCategory(@PathVariable("id") Long id){
         return categoryService.deleteCategory(id);
     }
