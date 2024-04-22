@@ -34,11 +34,29 @@ public class CategoryServiceImpl implements CategoryService {
         return ResponseEntity.ok("Delete was success");
     }
 
+//    @Override
+//    public List<CategoryEntity> getAllCategoriesByPositionId(Long positionId) {
+//        if(!positionRepository.existsById(positionId)){
+//            return null;
+//        }
+//        return categoryRepository.findCategoriesByPositionsId(positionId);
+//    }
+
     @Override
-    public List<CategoryEntity> getAllCategoriesByPositionId(Long positionId) {
-        if(!positionRepository.existsById(positionId)){
-            return null;
-        }
-        return categoryRepository.findCategoriesByPositionsId(positionId);
+    public void addCategoryByPositionId(Long positionId, CategoryEntity categoryRequest) {
+        positionRepository.findById(positionId).ifPresent(position -> {
+            Long categoryId = categoryRequest.getId();
+
+            if (categoryId != null && categoryId != 0L) {
+                categoryRepository.findById(categoryId).ifPresent(category -> {
+                    position.getCategories().add(category);
+                    positionRepository.save(position);
+                });
+            } else {
+                position.getCategories().add(categoryRequest);
+                positionRepository.save(position);
+            }
+        });
     }
+
 }

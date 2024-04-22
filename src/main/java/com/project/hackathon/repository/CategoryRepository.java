@@ -3,8 +3,8 @@ package com.project.hackathon.repository;
 import com.project.hackathon.entity.CategoryEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
+import java.util.Set;
 
 public interface CategoryRepository extends JpaRepository<CategoryEntity, Long> {
-    List<CategoryEntity> findCategoriesByPositionsId(Long positionId);
+    Set<CategoryEntity> findCategoriesByPositionsId(Long positionId);
 }

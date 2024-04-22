@@ -8,7 +8,7 @@ import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
-import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Data
@@ -50,11 +50,34 @@ public class PositionEntity {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate date;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER,
+                cascade = {
+                        CascadeType.PERSIST,
+                        CascadeType.MERGE
+                }
+    )
     @JoinTable(
             name = "Position_Category",
             joinColumns = @JoinColumn(name = "position_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id")
     )
-    private Set<CategoryEntity> categories = new HashSet<>();
+//    private Set<CategoryEntity> categories = new HashSet<>();
+    private Set<CategoryEntity> categories;
+
+    public void addCategory(CategoryEntity category){
+        this.categories.add(category);
+        category.getPositions().add(this);
+    }
+
+    public void removeCategory(Long categoryId){
+        CategoryEntity category = this.categories.stream().filter(t -> Objects.equals(t.getId(), categoryId)).findFirst().orElse(null);
+        if (category != null) {
+            this.categories.remove(category);
+            category.getPositions().remove(this);
+        }
+    }
+
+//    public Long getCategoryId() {
+//        return this.categories.;
+//    }
 }

@@ -15,19 +15,30 @@ public class CategoryController {
     @Autowired
     private CategoryService categoryService;
 
-    @GetMapping("/category")
-    public List<CategoryEntity> getAllCategories(){
-        return categoryService.getAllCategories();
-    }
-
-    @GetMapping("/positions/{positionId}/categories")
-    public ResponseEntity<List<CategoryEntity>> getAllCategoriesByPositionId(@PathVariable Long positionId){
-        List<CategoryEntity> categories = categoryService.getAllCategoriesByPositionId(positionId);
-        if (!categories.isEmpty()) {
-            return ResponseEntity.ok(categories);
-        } else {
+    @GetMapping("/categories")
+    public ResponseEntity<List<CategoryEntity>> getAllCategories(){
+        List<CategoryEntity> categories = categoryService.getAllCategories();
+        if(categories.isEmpty()){
             return ResponseEntity.notFound().build();
         }
+        return ResponseEntity.ok(categories);
+    }
+
+//    @GetMapping("/positions/{positionId}/categories")
+//    public ResponseEntity<List<CategoryEntity>> getAllCategoriesByPositionId(@PathVariable Long positionId){
+//        List<CategoryEntity> categories = categoryService.getAllCategoriesByPositionId(positionId);
+//        if (!categories.isEmpty()) {
+//            return ResponseEntity.ok(categories);
+//        } else {
+//            return ResponseEntity.notFound().build();
+//        }
+//    }
+
+    @PostMapping("/positions/{positionId}/categories")
+    public ResponseEntity<CategoryEntity> addCategory(@PathVariable Long positionId, @RequestBody CategoryEntity categoryRequest){
+        categoryService.addCategoryByPositionId(positionId, categoryRequest);
+//        return category.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.badRequest().build());
+        return ResponseEntity.ok().build();
     }
 
     @PostMapping("/category")

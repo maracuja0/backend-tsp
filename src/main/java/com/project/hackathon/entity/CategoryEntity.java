@@ -1,9 +1,10 @@
 package com.project.hackathon.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
-import java.util.HashSet;
+
 import java.util.Set;
 
 
@@ -24,6 +25,15 @@ public class CategoryEntity {
     @Column(name = "name")
     private String name;
 
-    @ManyToMany(mappedBy = "categories")
-    private Set<PositionEntity> positions = new HashSet<>();
+    @Setter
+    @Getter
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            },
+            mappedBy = "categories")
+    @JsonIgnore
+//    private Set<PositionEntity> positions = new HashSet<>();
+    private Set<PositionEntity> positions;
 }

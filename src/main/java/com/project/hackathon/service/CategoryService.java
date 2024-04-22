@@ -12,5 +12,7 @@ public interface CategoryService {
 
     ResponseEntity<String> deleteCategory(Long id);
 
-    List<CategoryEntity> getAllCategoriesByPositionId(Long positionId);
+//    List<CategoryEntity> getAllCategoriesByPositionId(Long positionId);
+
+    void addCategoryByPositionId(Long positionId, CategoryEntity categoryRequest);
 }

@@ -5,4 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 
 public interface CreatorRepository extends JpaRepository<CreatorEntity, Long> {
+//    List<PositionEntity> findPositionsByCreatorId(CreatorEntity creator);
 }

@@ -9,7 +9,7 @@ import java.util.Optional;
 public interface PositionService  {
     List<PositionEntity> getPositions();
 
-    Long createPosition(PositionEntity position);
+    PositionEntity createPosition(PositionEntity positionRequest);
 
     ResponseEntity<String> deletePosition(Long id);
 
