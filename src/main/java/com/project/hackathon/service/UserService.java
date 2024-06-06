@@ -3,6 +3,7 @@ package com.project.hackathon.service;
 import com.project.hackathon.entity.BookingEntity;
 import com.project.hackathon.entity.LikedEntity;
 import com.project.hackathon.entity.UserEntity;
+import com.project.hackathon.request.LoginRequest;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,4 +18,10 @@ public interface UserService {
     List<BookingEntity> getBookingByUser(UserEntity user);
 
     List<LikedEntity> getLikedByUser(UserEntity user);
+
+    UserEntity login(LoginRequest user);
+
+    void addLikedByUserId(Long userId, Long positionId);
+
+    void addBookingByUserId(Long userId, Long positionId);
 }

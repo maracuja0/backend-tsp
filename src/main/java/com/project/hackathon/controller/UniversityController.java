@@ -2,10 +2,9 @@ package com.project.hackathon.controller;
 
 import com.project.hackathon.entity.UniversityEntity;
 import com.project.hackathon.service.UniversityService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,5 +17,10 @@ public class UniversityController {
     @GetMapping
     public List<UniversityEntity> getAllUniversities(){
         return universityService.getAllUniversities();
+    }
+
+    @PostMapping
+    public void addUniversity(@RequestBody @Valid UniversityEntity university){
+        universityService.addUniversity(university);
     }
 }

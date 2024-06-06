@@ -35,6 +35,10 @@ public class CreatorEntity {
     @Size(min = 1, max = 30, message = "{size is invalid}")
     private String lastName;
 
+    @Column(name = "company")
+    @Size(min = 3, max = 30, message = "{size is invalid}")
+    private String company;
+
     @Column(name = "gender")
     private Boolean gender;
 

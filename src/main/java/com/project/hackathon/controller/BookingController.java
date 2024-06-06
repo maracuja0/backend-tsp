@@ -1,6 +1,7 @@
 package com.project.hackathon.controller;
 
 import com.project.hackathon.entity.BookingEntity;
+import com.project.hackathon.request.StatusRequest;
 import com.project.hackathon.service.BookingService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,11 @@ public class BookingController {
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteBooking(@PathVariable("id") Long id){
         return bookingService.deleteBooking(id);
+    }
+
+    @PostMapping("/updateStatus")
+    public void updateBookingStatus(@RequestBody StatusRequest statusRequest){
+        bookingService.updateStatus(statusRequest);
     }
 
 }

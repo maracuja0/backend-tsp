@@ -39,6 +39,6 @@ public class BookingEntity {
 
     @NotNull(message = "{booking_status_id is invalid}")
     @JoinColumn(name = "booking_status_id")
-    @OneToOne
+    @ManyToOne
     private BookingStatusEntity bookingStatusId;
 }

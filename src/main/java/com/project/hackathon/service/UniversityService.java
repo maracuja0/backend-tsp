@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface UniversityService {
     List<UniversityEntity> getAllUniversities();
+
+    void addUniversity(UniversityEntity university);
 }

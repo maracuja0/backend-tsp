@@ -17,4 +17,9 @@ public class UniversityServiceImpl implements UniversityService {
     public List<UniversityEntity> getAllUniversities() {
         return universityRepository.findAll();
     }
+
+    @Override
+    public void addUniversity(UniversityEntity university) {
+        universityRepository.save(university);
+    }
 }

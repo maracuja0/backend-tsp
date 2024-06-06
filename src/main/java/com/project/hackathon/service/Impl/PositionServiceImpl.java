@@ -22,8 +22,8 @@ public class PositionServiceImpl implements PositionService {
     @Override
     public List<PositionEntity> getPositions() {
         List<PositionEntity> positionList = positionRepository.findAll();
-        System.out.println("POSITION LIST");
-        System.out.println(positionList);
+//        System.out.println("POSITION LIST");
+//        System.out.println(positionList);
 //        for(PositionEntity position : positionList){
 //            position.setCategories(categoryRepository.findCategoriesByPositionsId(position.getId()));
 //        }
